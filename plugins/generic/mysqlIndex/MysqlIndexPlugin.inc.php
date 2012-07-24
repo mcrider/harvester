@@ -128,7 +128,7 @@ class MysqlIndexPlugin extends GenericPlugin {
 	 */
 	function navBarCallback($hookName, $args) {
 		$output =& $args[2];
-		$output .= '<li><a href="' . Request::url('misearch', 'index') . '">' . __('navigation.search') . '</a></li>';
+		$output .= '<li id="search"><a href="' . Request::url('misearch', 'index') . '">' . __('navigation.search') . '</a></li>';
 		return false;
 	}
 

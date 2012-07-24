@@ -75,6 +75,23 @@ input.defaultButton {
 }
 
 /**
+ * Basic archive layout styles
+ */
+.archive {
+
+}
+	 .archiveTitle {
+	 	font-size: 1.4em;
+	 }
+	 .archiveCount {
+	 	float: right;
+	 }
+	 .archiveDescription {
+	 	padding-left: 10px;
+		line-height: 1.5em;
+	 }
+
+/**
  * Main layout elements
  */
 
@@ -137,3 +154,4 @@ div.progressbar {
 	width: 505px;
 	z-index:1;
 }
+

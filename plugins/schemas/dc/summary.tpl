@@ -12,6 +12,10 @@
 <div class="recordContents">
 	<span class="author">{$record->getAuthorString()|escape|default:"&mdash;"}</span><br />
 	{assign var=parsedContents value=$record->getParsedContents()}
+
+	{assign var=archive value=$record->getArchive()}
+	<span><a href="{url page='browse' op='index' path=$archive->getArchiveId()}">{$archive->getTitle()}</a></span><br />
+
 	<span class="date">
 		{* Just find one date entry *}
 		{foreach from=$parsedContents.date item=date}{/foreach}

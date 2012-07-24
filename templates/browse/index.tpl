@@ -16,32 +16,30 @@
 
 <br />
 
+<div id="archives">
 {iterate from=archives item=archive}
-	{if !$notFirstArchive}
-		{assign var=notFirstArchive value=1}
-		<div id="archives">
-		&#187; <a href="{url path="all"}">{translate key="browse.browseAll"}</a><br/><br/>
-	{/if}
-	<div style="clear:left;">
-	{assign var="archiveImage" value=$archive->getSetting('archiveImage')}
-	{if $archiveImage}
-		<div class="archiveImage">
-			<a href="{url path=$archive->getArchiveId()}" class="action"><img src="{$publicFilesDir}/{$archiveImage.uploadName|escape:"url"}" {if $archiveImage.altText != ''}alt="{$archiveImage.altText|escape}"{else}alt="{translate key="archive.image"}"{/if} /></a>
-		</div>
-	{/if}
+	<div class="archive">
+		{if !$notFirstArchive}
+			{assign var=notFirstArchive value=1}
+			&#187; <a href="{url path="all"}">{translate key="browse.browseAll"}</a><br/><br/>
+		{/if}
+
+		<span class="archiveTitle"><a href="{url path=$archive->getArchiveId()}">{$archive->getTitle()|escape}</a></span>
+		<span class="archiveCount">{translate key="browse.recordCount" count=$archive->getRecordCount()}</span>
+
+		{assign var="archiveImage" value=$archive->getSetting('archiveImage')}
+		{if $archiveImage}
+			<div class="archiveImage">
+				<a href="{url path=$archive->getArchiveId()}" class="action"><img src="{$publicFilesDir}/{$archiveImage.uploadName|escape:"url"}" {if $archiveImage.altText != ''}alt="{$archiveImage.altText|escape}"{else}alt="{translate key="archive.image"}"{/if} /></a>
+			</div>
+		{/if}
+
+		<p class="archiveDescription">
+			{$archive->getSetting('description')|strip_unsafe_html|nl2br}<br />
+		</p>
 	</div>
-
-	<h3><a href="{url path=$archive->getArchiveId()}">{$archive->getTitle()|escape}</a></h3>
-
-	<p>
-		{$archive->getSetting('description')|strip_unsafe_html|nl2br}<br />
-		{translate key="browse.recordCount" count=$archive->getRecordCount()}
-	</p>
 {/iterate}
-
-{if $notFirstArchive}
-	</div>{* archives *}
-{/if}
+</div>
 
 <div style="clear:left;"></div>
 

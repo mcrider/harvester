@@ -16,15 +16,30 @@
 {/strip}
 
 {if $archive}
-	{assign var=archiveId value=$archive->getArchiveId()}
-	<h3><a href="{$archive->getUrl()|escape}">{$archive->getTitle()|escape}</a></h3>
-	<p><a class="action" href="{url op=archiveInfo path=$archive->getArchiveId()}">{translate key="browse.archiveInfo"}</a></p>
+	<div class="archiveHeading">
+		{assign var=archiveId value=$archive->getArchiveId()}
+		<h3><a href="{$archive->getUrl()|escape}">{$archive->getTitle()|escape}</a></h3>
+		
+		{assign var="archiveImage" value=$archive->getSetting('archiveImage')}
+		{if $archiveImage}
+			<div class="archiveImage">
+				<a href="{url path=$archive->getArchiveId()}" class="action"><img src="{$publicFilesDir}/{$archiveImage.uploadName|escape:"url"}" {if $archiveImage.altText != ''}alt="{$archiveImage.altText|escape}"{else}alt="{translate key="archive.image"}"{/if} /></a>
+			</div>
+		{/if}
+		
+		<p class="archiveDescription">
+			{$archive->getSetting('description')|strip_unsafe_html|nl2br}
+		</p>
+
+		<div style="clear:both;"></div>
+		<p class="moreInfo"><a class="action" href="{url op=archiveInfo path=$archive->getArchiveId()}">{translate key="browse.moreInfo"}</a></p>
+	</div>
 {else}
 	{assign var=archiveId value="all"}
 {/if}
 
 {* Sort orders *}
-<p>
+
 {assign var=isFirst value=1}
 {iterate from=sortOrders item=sortOrder}
 	{if $isFirst}
@@ -34,12 +49,12 @@
 	{/if}
 	<a class="action" href="{url path=$archiveId sortOrderId=$sortOrder->getSortOrderId()}">{$sortOrder->getSortOrderName()|escape}</a>
 {/iterate}
-</p>
+
 
 <div id="records">
 <ul class="plain">
 {iterate from=records item=record}
-	<li>&#187; {$record->displaySummary()}</li>
+	<li>{$record->displaySummary()}</li>
 {/iterate}
 </ul>
 	{page_info iterator=$records}&nbsp;&nbsp;&nbsp;&nbsp;{page_links anchor="records" name="records" sortOrderId=$sortOrderId iterator=$records}

@@ -509,6 +509,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="browse.sortBy">Sort By</message>
 	<message key="browse.sortBy.none">None</message>
 	<message key="browse.archiveInfo">View Archive Info</message>
+	<message key="browse.moreInfo">View More Archive Information...</message>
 	<message key="browse.browseRecords">Browse Records</message>
 
 	<message key="record.viewRecord">Record Details</message>

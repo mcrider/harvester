@@ -17,5 +17,14 @@
 
 {if $intro}{$intro|nl2br}{/if}
 
+<br /><br />
+
+<h4>{$archiveCount} {translate key="archive.archives"}</h4>
+<div class="homeArchivesContainer">
+{iterate from=archives item=archive}
+	<div class="archive"><a href="{$archive->getUrl()|escape}" target="_new">{$archive->getTitle()|escape}</a> ({$archive->getRecordCount()} {translate key="record.records"})</div>
+{/iterate}
+</div>
+
 {include file="common/footer.tpl"}
 

@@ -30,6 +30,7 @@ class IndexHandler extends Handler {
 
 		$archiveDao =& DAORegistry::getDAO('ArchiveDAO');
 		$templateMgr->assign('archiveCount', $archiveDao->getArchiveCount());
+		$templateMgr->assign('archives', $archiveDao->getArchives());
 
 		$recordDao =& DAORegistry::getDAO('RecordDAO');
 		$templateMgr->assign('recordCount', $recordDao->getRecordCount());
